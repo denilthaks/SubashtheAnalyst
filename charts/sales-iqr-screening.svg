@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="500" viewBox="0 0 1100 500" role="img" aria-labelledby="title desc">
+<title id="title">Interquartile-range screening candidates in numeric sales fields</title><desc id="desc">An exploratory 1.5 times IQR screen identified 534 Customer Age candidates, 25,984 Unit Cost, 25,984 Unit Price, 10,021 Profit, 18,179 Cost, and 14,765 Revenue candidates. These are not confirmed errors.</desc>
+<rect width="1100" height="500" rx="22" fill="#f4f7fb"/><text x="38" y="46" font-family="Arial,sans-serif" font-size="23" font-weight="700" fill="#17365d">STATISTICAL DATA-QUALITY SCREEN · IQR CANDIDATES</text><text x="38" y="74" font-family="Arial,sans-serif" font-size="14" fill="#52637a">1.5 × interquartile range rule · candidate counts, not confirmed errors</text>
+<g font-family="Arial,sans-serif" font-size="15" fill="#17365d">
+<text x="42" y="132">Customer age</text><rect x="220" y="111" width="8" height="25" rx="4" fill="#2d6a9f"/><text x="242" y="130">534</text>
+<text x="42" y="187">Unit cost</text><rect x="220" y="166" width="390" height="25" rx="4" fill="#2d6a9f"/><text x="624" y="185">25,984</text>
+<text x="42" y="242">Unit price</text><rect x="220" y="221" width="390" height="25" rx="4" fill="#2d6a9f"/><text x="624" y="240">25,984</text>
+<text x="42" y="297">Profit</text><rect x="220" y="276" width="150" height="25" rx="4" fill="#2d6a9f"/><text x="384" y="295">10,021</text>
+<text x="42" y="352">Cost</text><rect x="220" y="331" width="273" height="25" rx="4" fill="#2d6a9f"/><text x="507" y="350">18,179</text>
+<text x="42" y="407">Revenue</text><rect x="220" y="386" width="222" height="25" rx="4" fill="#2d6a9f"/><text x="456" y="405">14,765</text>
+</g><rect x="38" y="433" width="1024" height="42" rx="9" fill="#fff0df"/><text x="54" y="459" font-family="Arial,sans-serif" font-size="13" fill="#8d4a20">Interpret carefully: skewed commercial data can naturally produce IQR candidates. Validate definitions, units and source records before removing or correcting any values.</text></svg>
