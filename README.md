@@ -98,14 +98,7 @@ The project workbook contains a separate GDP-per-capita proxy; this is not a mea
 - Starbucks FY2025 Form 10-K — consult the annual report for detailed disclosures.
 
 The official FY2025 results report **40,990 stores** at fiscal year-end, **US$37.2 billion in consolidated net revenue**, and a **7.9% GAAP operating margin**, down **710 basis points year over year**. These are global corporate figures; they do not establish Nepal-specific demand, affordability or commercial viability.
-```mermaid
-xychart-beta
-    title "Nepal (bars = GDP growth %, line = inflation %)"
-    x-axis ["FY2025", "FY2026 proj.", "FY2027 proj."]
-    y-axis "Per cent" 0 --> 6
-    bar [4.4, 2.3, 4.4]
-    line [4.1, 4.3, 5.1]
-```
+![Starbucks FY2025 global metrics: store count, net revenue and GAAP operating margin](./charts/starbucks-fy2025-metrics.svg)
 
 **Macroeconomic proxies:**
 - Nepal GDP per capita (current US$) — World Bank / country data: https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=NP
@@ -166,6 +159,27 @@ Earlier project notes list endpoint `Profit` values of **2.88 million (2011)** a
 
 **Evidence status:** The workbook is included in this repository as [Profit & Loss Dashboard project.xlsx](./Profit%20Loss%20Dashboard%20project.xlsx). Its cached annual summary does not fully reconcile with grouping raw records by actual date; source currency and the formal definition of `Profit` also remain unverified. See the [workbook data-quality audit](./workbook_data_quality_audit.md).
 
+### Visual findings and statistical checks
+
+**Product-category revenue share**
+
+![Exploratory revenue mix: Bikes 72.5%, other categories 27.5%](./charts/sales-category-share.svg)
+
+The workbook-derived grouping attributes approximately 72.5% of revenue to Bikes. Treat this as a preliminary category mix, not an independently validated financial result.
+
+**Record distribution by the year in the Date field**
+
+![Bar chart of raw records by Date year, highlighting one 1906 date anomaly](./charts/sales-date-year-distribution.svg)
+
+The audit found one record dated 1906 even though the dataset is presented as covering 2011–2016. This is a data-quality signal to investigate, not a business trend.
+
+**IQR outlier screening**
+
+![Counts of numeric-field observations flagged by the 1.5 times IQR screening rule](./charts/sales-iqr-screening.svg)
+
+The 1.5 × IQR rule flags candidate observations in several numeric fields. These are screening candidates, not confirmed errors; commercial data can be skewed, so records should not be removed without contextual validation.
+
+
 *How to validate:* confirm the source currency and profit definition, resolve date/year anomalies and repeated records against an authoritative source, and reconcile the annual pivot results to an approved aggregation basis in a separate working copy.
 
 ### Analytical workflow
@@ -190,7 +204,7 @@ flowchart TD
     style J fill:#DCECE3,color:#163D2B,stroke:#54856A
 ```
 
-**What this project demonstrates:** Data preparation, KPI analysis, trend interpretation, dashboard reporting and commercial problem‑solving. The workbook is available in this local checkout, but its annual summaries and source definitions remain under review.
+**What this project demonstrates:** Data preparation, KPI analysis, trend interpretation, dashboard reporting and commercial problem‑solving. The workbook is linked above in this repository, but its annual summaries and source definitions remain under review.
 
 ---
 
