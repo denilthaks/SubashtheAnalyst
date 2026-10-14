@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="470" viewBox="0 0 1100 470" role="img" aria-labelledby="title desc">
+<title id="title">Sales workbook records grouped by the year in the Date field</title><desc id="desc">The audit found 2,677 records in each of 2011 and 2012, 24,442 in 2013, 29,398 in 2014, 24,443 in 2015, and 29,398 in 2016. One additional record has a Date in 1906 and is an anomaly requiring review.</desc>
+<rect width="1100" height="470" rx="22" fill="#f4f7fb"/><text x="38" y="46" font-family="Arial,sans-serif" font-size="23" font-weight="700" fill="#17365d">RECORD DISTRIBUTION BY YEAR IN THE DATE FIELD</text><text x="38" y="73" font-family="Arial,sans-serif" font-size="14" fill="#52637a">113,036 nonblank Date values · audit snapshot</text>
+<g font-family="Arial,sans-serif" font-size="15" fill="#17365d">
+<text x="42" y="126">2011</text><rect x="120" y="105" width="36" height="27" rx="5" fill="#2d6a9f"/><text x="170" y="125">2,677</text>
+<text x="42" y="174">2012</text><rect x="120" y="153" width="36" height="27" rx="5" fill="#2d6a9f"/><text x="170" y="173">2,677</text>
+<text x="42" y="222">2013</text><rect x="120" y="201" width="329" height="27" rx="5" fill="#2d6a9f"/><text x="463" y="221">24,442</text>
+<text x="42" y="270">2014</text><rect x="120" y="249" width="396" height="27" rx="5" fill="#2d6a9f"/><text x="530" y="269">29,398</text>
+<text x="42" y="318">2015</text><rect x="120" y="297" width="330" height="27" rx="5" fill="#2d6a9f"/><text x="464" y="317">24,443</text>
+<text x="42" y="366">2016</text><rect x="120" y="345" width="396" height="27" rx="5" fill="#2d6a9f"/><text x="530" y="365">29,398</text>
+<text x="42" y="414" fill="#a34c25" font-weight="700">1906</text><circle cx="132" cy="409" r="7" fill="#d46b35"/><text x="151" y="414" fill="#a34c25" font-weight="700">1 record — date anomaly to investigate</text>
+</g><text x="38" y="449" font-family="Arial,sans-serif" font-size="12" fill="#52637a">Source: Raw Data sheet audit. The Date field's year differs from the Year column for at least some records; this is a diagnostic, not a performance trend.</text></svg>
