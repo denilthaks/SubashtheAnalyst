@@ -81,8 +81,10 @@ The project workbook contains a separate GDP-per-capita proxy; this is not a mea
 **Evidence status:** The original affordability calculations and supporting inputs could not be verified from the available project evidence. The headline corporate statistics below are externally verifiable from Starbucks filings (linked).
 
 **Authoritative corporate sources (Starbucks FY2025):**
-- Starbucks FY2025 results (press release): https://investor.starbucks.com/news/financial-releases/news-details/2025/Starbucks-Reports-Q4-and-Full-Fiscal-Year-2025-Results/default.aspx
-- Starbucks FY2025 filings / Form 10‑K (available via SEC filings) — consult the annual report/10‑K for the fiscal-year figures.
+- [Starbucks FY2025 results (official press release)](https://investor.starbucks.com/news/financial-releases/news-details/2025/Starbucks-Reports-Q4-and-Full-Fiscal-Year-2025-Results/default.aspx)
+- Starbucks FY2025 Form 10-K — consult the annual report for detailed disclosures.
+
+The official FY2025 results report **40,990 stores** at fiscal year-end, **US$37.2 billion in consolidated net revenue**, and a **7.9% GAAP operating margin**, down **710 basis points year over year**. These are global corporate figures; they do not establish Nepal-specific demand, affordability or commercial viability.
 
 **Macroeconomic proxies:**
 - Nepal GDP per capita (current US$) — World Bank / country data: https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=NP
@@ -141,7 +143,7 @@ How does performance vary over time and across product categories, and which cha
 
 Earlier project notes list endpoint `Profit` values of **2.88 million (2011)** and **7.04 million (2016)**. These values remain under reconciliation with the raw-date grouping and cached pivot results; the source currency and formal definition of `Profit` have not been verified. No growth percentage is presented pending reconciliation.
 
-**Evidence status:** The audited workbook and transaction data are present in this local Downloads checkout. Their cached annual summary does not fully reconcile with grouping the raw records by actual date; currency and profit definition also remain unverified. Remote publication status has not been checked.
+**Evidence status:** The workbook is included in this repository as [Profit & Loss Dashboard project.xlsx](./Profit%20Loss%20Dashboard%20project.xlsx). Its cached annual summary does not fully reconcile with grouping raw records by actual date; source currency and the formal definition of `Profit` also remain unverified. See the [workbook data-quality audit](./workbook_data_quality_audit.md).
 
 *How to validate:* confirm the source currency and profit definition, resolve date/year anomalies and repeated records against an authoritative source, and reconcile the annual pivot results to an approved aggregation basis in a separate working copy.
 
@@ -302,25 +304,16 @@ I am particularly interested in opportunities where I can combine analytical ski
 
 ---
 
-## Evidence, provenance and next steps
+## Evidence and limitations
 
-The audited workbooks are present in this local Downloads checkout; their publication in the remote repository has not been verified. Their presence does not supply the original inputs for every claim. The following evidence is still required:
+The project files included here do not verify every original calculation. The following checks remain necessary before the affected figures can support decisions:
 
-1. Starbucks affordability model or reproducible table listing the coffee price(s), product size, location/date, currency, comparable income measures, sources and calculation cells.
-2. Sales source-owner confirmation of currency, profit definition, date treatment, duplicate handling and aggregation logic, followed by reconciliation of the cached pivot results.
+1. **Starbucks Nepal:** Validate the original affordability model or provide a reproducible table listing drink price, product size, location/date, currency and exchange-rate source, comparable monthly income measures, citations and calculation cells. GDP per capita is a broad economic average, not a proxy for an individual's or household's monthly disposable income.
+2. **Sales Analytics:** Confirm source currency, the definition of `Profit`, date treatment, repeated-row handling and aggregation logic; then reconcile cached pivot summaries against an approved calculation from the underlying records. Until then, do not use unreconciled sales trends to guide inventory or other operational decisions.
 
-The Sales Analytics website figures that lack a reproducible calculation have been withheld pending evidence. Do not treat any unreconciled dashboard figure as authoritative.
+Monthly affordability estimates and sales growth percentages are withheld because their inputs or calculations have not been sufficiently verified. The preliminary 2011 and 2016 endpoint values, 37.8% Profit-to-Revenue ratio and 72.5% Bikes revenue share should be treated as workbook-derived exploratory results, not independently validated financial measures. In particular, the ratio is not labelled gross margin, and no source currency is assumed.
 
-Numerical claims verified from external sources:
-- Starbucks FY2025 revenue, store count and GAAP operating margin are supported by Starbucks FY2025 investor materials (linked in the Starbucks project section) — see the official FY2025 results release and Form 10‑K for the detailed figures.
-
-Remaining unverified results:
-- Monthly affordability estimates — original calculation inputs and sources are unavailable in the reviewed project evidence.
-- Sales endpoint values and growth — currency, profit definition, date treatment and pivot reconciliation remain unresolved.
-
-If you approve, I will:
-- (A) add a short provenance appendix listing the exact workbook filenames and sheet/cell references after the evidence reconciliation is approved, and
-- (B) optionally include exported chart images (checked into repo/images/) if you provide PNG/SVG exports or grant permission to create them from the workbook.
+See the [workbook data-quality audit](./workbook_data_quality_audit.md) for the sales-data limitations. Starbucks FY2025 corporate metrics are linked in the project section above and describe the global business, not Nepal-specific market demand.
 
 ---
 
