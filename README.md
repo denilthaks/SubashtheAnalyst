@@ -79,7 +79,8 @@ gantt
 
 ## 1. Starbucks Nepal — Market-entry and affordability analysis
 
-**Tools:** Excel · Strategic analysis · Macroeconomic research
+**Tools:** Excel · Strategic analysis · Macroeconomic researchStarbucks_img
+![My Mobile Screenshot](Starbucks_img)
 
 ### Business question
 
