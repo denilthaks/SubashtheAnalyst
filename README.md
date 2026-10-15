@@ -10,6 +10,22 @@
 
 ---
 
+<table>
+  <tr>
+    <td>
+      <h2>My Journey into Data Analytics</h2>
+      <p><strong>From Excel 2016 on an ageing Dell laptop to building analytical projects—one lesson at a time.</strong></p>
+      <p>About five months ago, I was building my first dashboard. I was an Applied Management student with no traditional technical background, an old Dell laptop that struggled to keep up, and no perfect roadmap into analytics. I had curiosity, a lot to learn, and a decision to start before I felt ready.</p>
+      <p>I taught myself Excel one function at a time: experimenting, getting stuck, searching for answers, and trying again. That first dashboard took weeks of trial and error, but it showed me that I could turn independent learning into something practical.</p>
+      <p>Since then, I have pushed beyond spreadsheets into Power BI, SQL fundamentals, data-quality checks, automated testing, and AI-assisted financial forecasting. Along the way, I have learned that analytics is not just about making numbers look impressive. It is about asking the right questions, checking whether the data can be trusted, and being honest about what the evidence does—and does not—show.</p>
+      <p>I have prioritised hands-on projects over collecting certificates alone. Each project gives me something concrete to test, document, improve, and learn from. I am still developing my skills, and I see that as part of the work—not something to hide.</p>
+      <p>As a business student, I want to connect analytical thinking with commercial understanding, especially in banking and financial services, where accuracy, accountability, and sound decisions matter.</p>
+      <blockquote><strong>This repository is more than a collection of dashboards. It is a record of where I started, what I have taught myself, the mistakes that have helped me improve, and the questions I am learning to answer.</strong></blockquote>
+      <p>I do not claim to know everything. Five months ago, I was figuring out my first dashboard. Today, I am building more structured analytical workflows—and I am only getting started.</p>
+    </td>
+  </tr>
+</table>
+
 ## At a glance
 - BSc (Hons) Applied Management student (BPP University). Open to entry-level/graduate roles in Data Analysis, Business Analysis, Business Intelligence and Operations Analysis.
 - Core tools: Excel (PivotTables, lookups), Power BI, SQL basics; familiar with PDCA, 4Vs and TIMWOODS for operational analysis.
