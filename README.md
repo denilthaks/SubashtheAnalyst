@@ -245,6 +245,58 @@ In my practical workflow exploration, I investigated an authorisation boundary i
 
 ---
 
+
+---
+
+## 5. AI-Assisted Financial Forecasting — Walk-forward model review
+
+**Tools and methods:** Quantcept historical market data · Claude-assisted reporting · Ridge regression · baseline comparison · chronological walk-forward evaluation
+
+### Business question
+
+Can a Ridge regression model improve on a simple baseline when forecasting the 20-trading-day price change across multiple instruments and unseen yearly test periods?
+
+### Headline results
+
+| Metric | Simple baseline | Ridge regression | Interpretation |
+|---|---:|---:|---|
+| Return MAE | 4.10% | 4.09% | Practically indistinguishable in the aggregate |
+| Price MAE | 251.9635 | 251.6687 | Slightly lower reported error; units differ by instrument |
+| Directional accuracy | 57.68% | 52.94% | Ridge trails the baseline on direction |
+
+### Forecast error over time
+
+![Yearly 20-day return forecast MAE comparing Ridge regression and the baseline](./charts/forecast-return-mae.svg)
+
+The error lines largely overlap, with both models' errors rising sharply in 2020. Ridge does not show a consistent, meaningful improvement over the baseline.
+
+### Directional accuracy over time
+
+![Yearly directional accuracy comparing Ridge regression and the baseline](./charts/forecast-directional-accuracy.svg)
+
+The model beats the baseline in only two test years in the report. Overall, Ridge's directional accuracy is lower than the baseline's, so the forecast should not be treated as a reliable market-direction signal.
+
+### Latest forecast versus typical error
+
+![Latest 20-day forecast changes compared with typical model error by instrument](./charts/forecast-vs-typical-error.svg)
+
+The reported forecast moves are small relative to typical model error. This weak signal-to-error comparison is another reason not to interpret these outputs as actionable trading recommendations.
+
+### What I learned
+
+- Why chronological splits and year-by-year walk-forward evaluation are important for time-series work.
+- Why a model needs to be compared with a clearly defined baseline using the same test observations.
+- Why numerical error and directional accuracy measure different aspects of forecast quality.
+- How AI-assisted reporting can help communicate findings, while the analyst remains responsible for checking the metrics and limiting claims.
+
+### Limitations and status
+
+This is an **exploratory prototype**, not a validated trading strategy. The report's figures have not been independently audited. Further checks should verify target definitions and units, sample sizes, forecast/target alignment, overlapping horizons, treatment of corporate actions and dividends, the partial 2026 test period, and reproducibility of the evaluation. BP and Shell price series may use different adjustment conventions and are not directly comparable.
+
+**Conclusion:** The current evaluation does not demonstrate a reliable predictive edge or investment profitability. This project demonstrates an analytical workflow and critical model evaluation—not investment advice.
+
+**Full HTML report:** [Walk-Forward Forecast Review](./Walk-Forward-Forecast-Review.html) — the charts and key insights above are also visible directly in this README without opening the report.
+
 ## 4. Green Motion — Operations analysis and improvement proposal
 
 **Focus:** Operations management · PDCA · Forecasting · Process analysis
