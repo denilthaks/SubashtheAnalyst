@@ -1,0 +1,66 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Walk-Forward Forecast Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: headline, two yearly line charts (error, direction), forecast bars with error context, per-instrument table */
+:root{--bg:#f6f7f9;--surface:#fcfcfb;--ink:#0f1720;--ink2:#4a5360;--muted:#7a8391;--grid:#e3e6eb;--a:#2a78d6;--b:#eb6834}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141a;--surface:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--muted:#8d9099;--grid:#2c3038;--a:#3987e5;--b:#d95926;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10141a;--surface:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--muted:#8d9099;--grid:#2c3038;--a:#3987e5;--b:#d95926;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;padding-block:28px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font-size:15px;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1{font-family:"IBM Plex Serif",Georgia,serif;font-weight:600;font-size:clamp(24px,4vw,32px);line-height:1.2;margin:0;text-wrap:balance}
+.sub{color:var(--ink2);margin:6px 0 0;max-width:70ch}
+.legend{display:flex;gap:18px;flex-wrap:wrap;color:var(--ink2);font-size:14px}
+.legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:3px}
+.panel{background:var(--surface);border:1px solid var(--grid);border-radius:10px;padding:18px 18px 12px;min-width:0}
+.panel h2{font-size:16px;margin:0 0 2px;font-weight:600}
+.panel p{margin:0 0 10px;color:var(--ink2);font-size:13.5px}
+svg{width:100%;height:auto;display:block}
+svg text{fill:var(--muted);font-size:11px;font-family:inherit}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:6px 9px;border-radius:6px;font-size:12.5px;opacity:0;transition:opacity .1s;z-index:5}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--grid);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--muted);font-weight:500}
+.note{color:var(--muted);font-size:12.5px;margin:10px 0 0}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@600&display=swap">
+<div class="wrap">
+ <div><h1>Rebuilt forecast, tested year by year</h1>
+ <p class="sub">The model now predicts the 20-day change in price and is re-trained and tested one year at a time from 2015 to 2026, so every test year is unseen data. A Ridge regression on nine features is compared with a plain baseline that predicts the long-run average move. The result: still no real edge.</p></div>
+ <div class="legend"><span><i style="background:var(--a)"></i>Ridge model</span><span><i style="background:var(--b)"></i>Baseline (average move)</span></div>
+ <div class="panel"><h2>Average error of the 20-day forecast, by test year</h2>
+  <p>Mean absolute error of the predicted 20-day return, in percentage points. Lower is better. The two lines sit almost on top of each other, and both spike in 2020.</p>
+  <svg id="c1" viewBox="0 0 900 280" role="img" aria-label="Line chart of yearly forecast error for the model and baseline"></svg></div>
+ <div class="panel"><h2>Share of 20-day moves called in the right direction, by test year</h2>
+  <p>Higher is better. The baseline always says "up", so its score is simply how often markets rose. The model beats it in only 2018 and 2022.</p>
+  <svg id="c2" viewBox="0 0 900 280" role="img" aria-label="Line chart of yearly direction accuracy for the model and baseline"></svg></div>
+ <div class="panel"><h2>Latest 20-day forecast against typical error</h2>
+  <p>Forecast change from the close on 14 Oct 2026. The grey band is the model's typical error for that instrument. Every forecast is far smaller than the typical error, so none of them is a usable signal.</p>
+  <svg id="c3" viewBox="0 0 900 300" role="img" aria-label="Forecast 20-day change per instrument with typical error band"></svg></div>
+ <div class="panel"><h2>Results by instrument, all test years</h2><div class="tbl"><table id="tb"></table></div>
+  <p class="note">Average 20-day error in percentage points of price. Prices: BP and Shell are in pence on the London Stock Exchange, and the other five are index points. BP prices look dividend-adjusted while Shell prices look raw, so BP and Shell are not directly comparable. Past results do not predict future returns.</p></div>
+</div><div class="tip" id="tip"></div>
+<script>
+const D={"years": ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026"], "maeB": [4.4, 4.86, 2.59, 3.58, 3.02, 7.87, 3.63, 5.06, 3.76, 2.91, 3.47, 4.11], "maeR": [4.57, 4.7, 2.7, 3.59, 3.0, 7.86, 3.51, 4.95, 3.82, 2.92, 3.49, 3.99], "dirB": [38.5, 64.7, 62.9, 43.2, 66.0, 55.1, 64.6, 49.8, 54.6, 59.8, 68.5, 61.8], "dirR": [37.5, 59.2, 46.5, 48.4, 60.3, 45.2, 61.2, 51.4, 50.5, 54.6, 56.2, 60.8], "fc": [{"n": "BP", "p": -0.43, "c": 614.2}, {"n": "FTSE 100", "p": 0.28, "c": 10724.87}, {"n": "FTSE 250", "p": 0.29, "c": 5780.46}, {"n": "FTSE All-Share", "p": 0.37, "c": 24360.7695}, {"n": "Nasdaq Composite", "p": 0.85, "c": 26692.8684}, {"n": "S&P 500", "p": 0.51, "c": 7718.94}, {"n": "Shell", "p": -1.06, "c": 3911.5}], "per": {"BP": {"mb": 6.1, "mr": 6.05}, "FTSE 100": {"mb": 2.73, "mr": 2.69}, "FTSE 250": {"mb": 2.66, "mr": 2.64}, "FTSE All-Share": {"mb": 3.14, "mr": 3.11}, "Nasdaq Composite": {"mb": 4.57, "mr": 4.61}, "S&P 500": {"mb": 3.43, "mr": 3.46}, "Shell": {"mb": 5.74, "mr": 5.73}}, "tot": {"Baseline": {"ret_MAE": 0.041, "price_MAE": 251.9635, "dir": 0.5768}, "Linear": {"ret_MAE": 0.0409, "price_MAE": 251.3974, "dir": 0.5335}, "Ridge": {"ret_MAE": 0.0409, "price_MAE": 251.6687, "dir": 0.5294}}, "no": {"bh": 0.006982793748086077, "Linear": 0.006449816974805071, "Ridge": 0.0061965909192382, "n": 929}};const tip=document.getElementById('tip');
+function show(e,t){tip.textContent=t;tip.style.opacity=1;tip.style.left=Math.min(e.clientX+12,innerWidth-200)+'px';tip.style.top=(e.clientY+12)+'px'}function hide(){tip.style.opacity=0}
+function line(id,A,B,lo,hi,ticks,fmt,ref){const s=document.getElementById(id),W=900,H=280,L=48,R=16,T=14,Bm=36,pw=W-L-R,ph=H-T-Bm;
+ const n=D.years.length,x=i=>L+pw*i/(n-1),y=v=>T+ph-(v-lo)/(hi-lo)*ph;let h='';
+ ticks.forEach(t=>h+=`<line x1="${L}" x2="${W-R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--grid)"/><text x="${L-8}" y="${y(t)+4}" text-anchor="end">${fmt(t)}</text>`);
+ D.years.forEach((yr,i)=>h+=`<text x="${x(i)}" y="${H-12}" text-anchor="middle">${yr}</text>`);
+ if(ref!=null)h+=`<line x1="${L}" x2="${W-R}" y1="${y(ref)}" y2="${y(ref)}" stroke="var(--muted)" stroke-dasharray="5 4"/><text x="${W-R}" y="${y(ref)-6}" text-anchor="end">Coin flip 50%</text>`;
+ [[B,'var(--b)','Baseline'],[A,'var(--a)','Ridge model']].forEach(([S,c,nm])=>{h+=`<path d="${S.map((v,i)=>(i?'L':'M')+x(i)+','+y(v)).join('')}" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/>`;
+  S.forEach((v,i)=>h+=`<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="${c}" stroke="var(--surface)" stroke-width="2"/><circle cx="${x(i)}" cy="${y(v)}" r="12" fill="transparent" data-t="${D.years[i]} · ${nm}: ${fmt(v,1)}"/>`)});
+ s.innerHTML=h;s.querySelectorAll('circle[data-t]').forEach(p=>{p.addEventListener('mousemove',e=>show(e,p.dataset.t));p.addEventListener('mouseleave',hide)})}
+line('c1',D.maeR,D.maeB,2,9,[2,4,6,8],(v,d)=>v.toFixed(d?2:0)+' pp');
+line('c2',D.dirR,D.dirB,35,75,[40,50,60,70],(v,d)=>v.toFixed(d?1:0)+'%',50);
+(function(){const s=document.getElementById('c3'),W=900,H=300,L=130,R=20,T=14,B=34,pw=W-L-R,ph=H-T-B,m=7,lo=-8,hi=8,x=v=>L+(v-lo)/(hi-lo)*pw,rh=ph/m;let h='';
+ [-8,-4,0,4,8].forEach(t=>h+=`<line x1="${x(t)}" x2="${x(t)}" y1="${T}" y2="${T+ph}" stroke="${t?'var(--grid)':'var(--muted)'}"/><text x="${x(t)}" y="${H-12}" text-anchor="middle">${t>0?'+':''}${t}%</text>`);
+ D.fc.forEach((f,i)=>{const cy=T+rh*i+rh/2,e=D.per[f.n].mr,c=f.p>=0?'var(--a)':'var(--b)';
+  h+=`<rect x="${x(-e)}" y="${cy-11}" width="${x(e)-x(-e)}" height="22" rx="4" fill="var(--grid)"/><text x="${L-10}" y="${cy+4}" text-anchor="end" style="fill:var(--ink2);font-size:12.5px">${f.n}</text>`;
+  const x0=x(0),x1=x(f.p);h+=`<rect x="${Math.min(x0,x1)}" y="${cy-6}" width="${Math.max(Math.abs(x1-x0),2)}" height="12" rx="3" fill="${c}" data-t="${f.n}: forecast ${f.p>0?'+':''}${f.p}% over 20 days, typical error ±${e}%"/><text x="${x1+(f.p>=0?8:-8)}" y="${cy+4}" text-anchor="${f.p>=0?'start':'end'}" style="fill:var(--ink)">${f.p>0?'+':''}${f.p}%</text>`});
+ s.innerHTML=h;s.querySelectorAll('rect[data-t]').forEach(p=>{p.addEventListener('mousemove',e=>show(e,p.dataset.t));p.addEventListener('mouseleave',hide)})})();
+document.getElementById('tb').innerHTML='<tr><th>Instrument</th><th>Baseline error</th><th>Model error</th><th>Forecast next 20 days</th></tr>'+D.fc.map(f=>`<tr><td>${f.n}</td><td>${D.per[f.n].mb.toFixed(2)}</td><td>${D.per[f.n].mr.toFixed(2)}</td><td>${f.p>0?'+':''}${f.p.toFixed(2)}%</td></tr>`).join('');
+</script>
+</body></html>
