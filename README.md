@@ -166,7 +166,50 @@ Affordability remains a question to validate for a premium coffee proposition. A
 
 ---
 
-## 2. Sales Analytics — Financial Performance & Market Strategy
+## 2. Online Store Dashboard — First Excel Analytics Project
+
+**Status:** Foundational project · Excel 2016
+
+**Tools:** Excel 2016 · PivotTables · PivotCharts · SUM / SUMIF · COUNT · INDEX · GETPIVOTDATA · TEXT functions · KPI reporting
+
+### Project overview
+
+This was my first data analytics dashboard, built while independently learning Excel 2016 as a BSc (Hons) Applied Management student at BPP University. I used an online-store dataset to practise turning sales records into a visual overview of commercial performance.
+
+### Business questions explored
+
+- How do revenue and delivered-order revenue compare?
+- Which product categories contribute most or least to recorded sales?
+- How do sales channels and payment methods compare?
+- What patterns appear across quarters and delivery performance?
+- Which areas might deserve further investigation by the business?
+
+### Headline results from the original dashboard
+
+| Finding | Dashboard result |
+|---|---:|
+| Gross revenue | £1,264,761.96 |
+| Net revenue from delivered orders | £242,600.32 |
+| Average order value | £1,053.97 |
+| Highest-sales quarter | £145,412.78 |
+| Highest product revenue | Chairs: approximately £195.6K |
+| Lowest product gross revenue | Phones: approximately £151.7K |
+| Lowest product net revenue | Desks: approximately £24.2K |
+| Highest-performing channel shown | Email marketing |
+
+These are the figures displayed in the original dashboard. The underlying source data, metric definitions and calculations have not been independently re-audited as part of this README update, so the results should be treated as the project's reported outputs rather than verified business accounts.
+
+### What I learned
+
+Building this dashboard helped me practise Excel formulas, PivotTables, PivotCharts, KPI presentation and translating results into business questions. The recommendations explored included investigating weaker product performance, reviewing marketing-funnel conversion and considering inventory turnover and working-capital efficiency. These were hypotheses to investigate, not measured improvements.
+
+**Reflection:** This project was the starting point of my analytics journey. Since then, I have continued working on more structured sales and financial performance analysis, including explicit data-quality checks and documented limitations.
+
+**What this project demonstrates:** Independent learning, foundational Excel analytics, dashboard design and communicating exploratory findings in a business context.
+
+---
+
+## 3. Sales Analytics — Financial Performance & Market Strategy
 
 **Status:** In progress
 
@@ -227,7 +270,7 @@ See the [workbook data-quality audit](./workbook_data_quality_audit.md) for the 
 
 ---
 
-## 3. AI Agent Workflow — Authorisation and safety controls
+## 4. AI Agent Workflow — Authorisation and safety controls
 
 **Focus:** Workflow design · Risk awareness · Process review
 
@@ -266,7 +309,7 @@ In my practical workflow exploration, I investigated an authorisation boundary i
 
 ---
 
-## 5. AI-Assisted Financial Forecasting — Walk-forward model review
+## 6. AI-Assisted Financial Forecasting — Walk-forward model review
 
 **Tools and methods:** Quantcept historical market data · Claude-assisted reporting · Ridge regression · baseline comparison · chronological walk-forward evaluation
 
@@ -315,7 +358,7 @@ This is an **exploratory prototype**, not a validated trading strategy. The repo
 
 **Full HTML report:** [Walk-Forward Forecast Review](./Walk-Forward-Forecast-Review.html) — the charts and key insights above are also visible directly in this README without opening the report.
 
-## 4. Green Motion — Operations analysis and improvement proposal
+## 5. Green Motion — Operations analysis and improvement proposal
 
 **Focus:** Operations management · PDCA · Forecasting · Process analysis
 
