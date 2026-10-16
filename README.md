@@ -1,6 +1,10 @@
 # Subash Gauchan
 ### Entry-Level Data Analyst | Business Analysis | BI & Operations Improvement
 
+> A hands-on portfolio exploring business intelligence, sales and KPI analysis, market-entry research, operational improvement, AI workflow controls, and exploratory financial forecasting. Built through independent learning alongside a BSc (Hons) Applied Management degree, with project methods, findings, and limitations documented transparently.
+
+**Connect with me on LinkedIn:** [Subash Gauchan](https://www.linkedin.com/in/subash-gauchan16/)
+
 <p align="center">
   <img src="https://img.shields.io/badge/Portfolio-Analytics%20%26%20Business%20Insight-17365D?style=for-the-badge&logo=github" alt="Analytics and Business Insight Portfolio" />
   <a href="https://www.linkedin.com/in/subash-gauchan16/"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
