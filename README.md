@@ -174,34 +174,29 @@ Affordability remains a question to validate for a premium coffee proposition. A
 
 How does performance vary over time and across product categories, and which changes deserve further investigation?
 
-### Selected performance comparison
+### Key insights from the workbook
 
-Earlier project notes list endpoint `Profit` values of **2.88 million (2011)** and **7.04 million (2016)**. These values remain under reconciliation with the raw-date grouping and cached pivot results; the source currency and formal definition of `Profit` have not been verified. No growth percentage is presented pending reconciliation.
+The raw-data sheet contains **113,036 populated transaction records**. Aggregating its `Revenue`, `Cost` and `Profit` fields gives the following workbook-level totals. The source currency and formal accounting definition of `Profit` are not documented, so these are presented as source-unit values rather than verified GBP figures.
 
-**Evidence status:** The workbook is included in this repository as [Profit & Loss Dashboard project.xlsx](./Profit%20Loss%20Dashboard%20project.xlsx). Its cached annual summary does not fully reconcile with grouping raw records by actual date; source currency and the formal definition of `Profit` also remain unverified. See the [workbook data-quality audit](./workbook_data_quality_audit.md).
+| Finding | Workbook result | Business interpretation |
+|---|---:|---|
+| Revenue | 85,271,008 | Total recorded sales value in the workbook |
+| Cost | 53,049,908 | Total recorded cost |
+| Profit | 32,221,100 | Recorded profit field; definition not independently verified |
+| Profit / revenue ratio | 37.8% | Descriptive ratio only; not labelled gross margin |
+| Bikes revenue | 61,782,134 (72.5%) | Bikes dominate the recorded revenue mix |
+| Accessories revenue | 15,117,992 (17.7%) | Second-largest category by revenue |
+| Clothing revenue | 8,370,882 (9.8%) | Smallest category by revenue |
+| Highest-revenue country | United States: 27,975,547 (32.8%) | Largest recorded market by revenue and profit |
+| Highest country profit/revenue ratio | Canada: approximately 46.8% | Worth investigating, but not proof of superior underlying economics |
 
-### Visual findings and statistical checks
+**Product mix:** Bikes account for approximately **72.5% of revenue** and **63.7% of the recorded profit field**. Accessories contribute about 17.7% of revenue, while Clothing contributes about 9.8%. A sensible follow-up is to examine whether the mix reflects order volume, pricing, unit economics or customer demand—but the workbook alone does not establish the cause.
 
-**Product-category revenue share**
+**Geography:** The United States records the highest revenue (27.98m) and profit (11.07m) in the country summaries. Australia is the second-largest market by revenue (21.30m). Canada has the highest simple profit-to-revenue ratio among the six countries (about 46.8%), making its category mix and cost structure useful areas for further investigation. These ratios are descriptive and should not be interpreted as audited margins.
 
-![Exploratory revenue mix: Bikes 72.5%, other categories 27.5%](./charts/sales-category-share.svg)
+**Year-on-year reporting needs correction before use.** Grouping the raw `Date` field gives recorded revenue of 8.96m (2011), 9.18m (2012), 15.24m (2013), 14.15m (2014), 20.02m (2015) and 17.71m (2016). The workbook's annual pivot summary reverses the 2011/2012 labels and does not exactly match the raw-date aggregation for 2013. One transaction is dated **1906-09-02** despite the stated 2011–2016 reporting period. The `Year` column also contains **5,354 values stored as dates** rather than year numbers. Therefore, these annual values are diagnostic comparisons, not yet a reconciled time series.
 
-The workbook-derived grouping attributes approximately 72.5% of revenue to Bikes. Treat this as a preliminary category mix, not an independently validated financial result.
-
-**Record distribution by the year in the Date field**
-
-![Bar chart of raw records by Date year, highlighting one 1906 date anomaly](./charts/sales-date-year-distribution.svg)
-
-The audit found one record dated 1906 even though the dataset is presented as covering 2011–2016. This is a data-quality signal to investigate, not a business trend.
-
-**IQR outlier screening**
-
-![Counts of numeric-field observations flagged by the 1.5 times IQR screening rule](./charts/sales-iqr-screening.svg)
-
-The 1.5 × IQR rule flags candidate observations in several numeric fields. These are screening candidates, not confirmed errors; commercial data can be skewed, so records should not be removed without contextual validation.
-
-
-*How to validate:* confirm the source currency and profit definition, resolve date/year anomalies and repeated records against an authoritative source, and reconcile the annual pivot results to an approved aggregation basis in a separate working copy.
+**Evidence status:** Totals and category/country splits above were recalculated from the workbook's raw records. They are internally consistent with the full-record totals, but the original source currency, meaning of `Profit`, duplicate-record business rules and annual date logic remain unverified. See the [workbook data-quality audit](./workbook_data_quality_audit.md). Do not treat the exploratory figures as audited financial results or use unreconciled annual trends for operational decisions.
 
 ### Analytical workflow
 
