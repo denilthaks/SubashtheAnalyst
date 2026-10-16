@@ -166,61 +166,64 @@ Affordability remains a question to validate for a premium coffee proposition. A
 
 ---
 
-## 2. Sales Analytics — Historical performance and KPI analysis
+## 2. Sales Analytics — Financial Performance & Market Strategy
 
-**Tools:** Excel · PivotTables · Lookup functions
+**Status:** In progress
+
+**Tools:** Excel · PivotTables · Lookup Functions · KPI Dashboards · Heatmap Analysis
 
 ### Business question
 
-How does performance vary over time and across product categories, and which changes deserve further investigation?
+How does financial performance change over time, which countries and product categories drive results, and where could the business improve its commercial strategy?
 
-### Key insights from the workbook
+### Project overview
 
-The raw-data sheet contains **113,036 populated transaction records**. Aggregating its `Revenue`, `Cost` and `Profit` fields gives the following workbook-level totals. The source currency and formal accounting definition of `Profit` are not documented, so these are presented as source-unit values rather than verified GBP figures.
+An Excel-based sales analytics project exploring historical financial performance and comparing markets by revenue, cost and profit. The dashboard brings together year-level financial analysis, a heatmap and country-level performance views to identify patterns that may inform resource allocation, product focus and cost-management decisions.
+
+### Key findings from the workbook
+
+The raw-data sheet contains **113,036 populated transaction records**. The headline totals and product/country breakdowns below were recalculated from the workbook's raw records. The source currency and formal definition of the `Profit` field are not documented, so values are shown in source units rather than assumed to be GBP.
 
 | Finding | Workbook result | Business interpretation |
 |---|---:|---|
-| Revenue | 85,271,008 | Total recorded sales value in the workbook |
-| Cost | 53,049,908 | Total recorded cost |
-| Profit | 32,221,100 | Recorded profit field; definition not independently verified |
-| Profit / revenue ratio | 37.8% | Descriptive ratio only; not labelled gross margin |
-| Bikes revenue | 61,782,134 (72.5%) | Bikes dominate the recorded revenue mix |
+| Total revenue | 85,271,008 | Total recorded sales value |
+| Total cost | 53,049,908 | Total recorded cost |
+| Recorded profit | 32,221,100 | Total from the workbook's Profit field |
+| Profit-to-revenue ratio | 37.8% | Descriptive ratio; not labelled gross margin |
+| Bikes revenue | 61,782,134 (72.5%) | Dominant product category by revenue |
 | Accessories revenue | 15,117,992 (17.7%) | Second-largest category by revenue |
 | Clothing revenue | 8,370,882 (9.8%) | Smallest category by revenue |
-| Highest-revenue country | United States: 27,975,547 (32.8%) | Largest recorded market by revenue and profit |
-| Highest country profit/revenue ratio | Canada: approximately 46.8% | Worth investigating, but not proof of superior underlying economics |
+| Highest-revenue country | United States: 27,975,547 (32.8%) | Largest market by recorded revenue and profit |
+| Highest country profit-to-revenue ratio | Canada: approximately 46.8% | Candidate for further investigation into product mix and costs |
 
-**Product mix:** Bikes account for approximately **72.5% of revenue** and **63.7% of the recorded profit field**. Accessories contribute about 17.7% of revenue, while Clothing contributes about 9.8%. A sensible follow-up is to examine whether the mix reflects order volume, pricing, unit economics or customer demand—but the workbook alone does not establish the cause.
+### Dashboard analysis
 
-**Geography:** The United States records the highest revenue (27.98m) and profit (11.07m) in the country summaries. Australia is the second-largest market by revenue (21.30m). Canada has the highest simple profit-to-revenue ratio among the six countries (about 46.8%), making its category mix and cost structure useful areas for further investigation. These ratios are descriptive and should not be interpreted as audited margins.
+**Financial performance over time:** The financial dashboard compares revenue, cost and profit by year, with a heatmap to make differences across periods easier to spot. This view is intended to flag periods for further investigation—for example, when costs change differently from revenue or profit. Annual comparisons remain provisional until the date and pivot inconsistencies described below are reconciled.
 
-**Year-on-year reporting needs correction before use.** Grouping the raw `Date` field gives recorded revenue of 8.96m (2011), 9.18m (2012), 15.24m (2013), 14.15m (2014), 20.02m (2015) and 17.71m (2016). The workbook's annual pivot summary reverses the 2011/2012 labels and does not exactly match the raw-date aggregation for 2013. One transaction is dated **1906-09-02** despite the stated 2011–2016 reporting period. The `Year` column also contains **5,354 values stored as dates** rather than year numbers. Therefore, these annual values are diagnostic comparisons, not yet a reconciled time series.
+**Country-level performance:** The country view compares revenue, cost, profit and profitability measures to distinguish market scale from relative performance. The United States records the highest revenue (27.98m) and profit (11.07m); Australia is second by revenue (21.30m). Canada has the highest calculated profit-to-revenue ratio among the six countries (approximately 46.8%). These results help prioritise questions for investigation, but do not by themselves explain why markets perform differently.
 
-**Evidence status:** Totals and category/country splits above were recalculated from the workbook's raw records. They are internally consistent with the full-record totals, but the original source currency, meaning of `Profit`, duplicate-record business rules and annual date logic remain unverified. See the [workbook data-quality audit](./workbook_data_quality_audit.md). Do not treat the exploratory figures as audited financial results or use unreconciled annual trends for operational decisions.
+**Product mix and market strategy:** Bikes represent approximately **72.5% of revenue** and **63.7% of the recorded profit field**. Accessories contribute 17.7% of revenue, while Clothing contributes 9.8%. Combining product and country views can help investigate which categories contribute most in each market and where complementary-product opportunities may exist.
 
-### Analytical workflow
+### Potential business actions to investigate
 
-```mermaid
-flowchart TD
-    A["Historical transaction data"]
-    A --> B["Structure and validate records"]
-    B --> C["Calculate revenue, profit\nand other KPIs"]
-    C --> D["Compare performance\nby time and category"]
-    D --> E{"Identify the change"}
-    E --> F["Revenue: investigate\nprice and sales volume"]
-    E --> G["Profit: investigate\ncosts and product mix"]
-    E --> H["Margin: investigate\nprofitability"]
-    F --> I["Validate potential drivers"]
-    G --> I
-    H --> I
-    I --> J["Recommend action\nsupported by evidence"]
+- **Markets with high sales and profit:** identify the product categories contributing to performance before considering additional stock, marketing or investment.
+- **Markets with high costs:** break costs down by year and product category, then investigate potential drivers before proposing changes to pricing, sourcing, inventory or operating processes. High total cost alone does not indicate poor performance if sales are also high.
+- **Markets with stronger calculated ratios:** compare category mix and cost patterns to identify practices worth testing elsewhere; do not assume that results will transfer between markets.
+- **Cross-selling opportunities:** test whether Accessories or Clothing could be promoted alongside Bikes in markets where the category-level evidence supports further investigation.
 
-    style D fill:#DCE6F1,color:#17365D,stroke:#5279A8
-    style E fill:#FFF0D5,color:#664600,stroke:#C59B42
-    style J fill:#DCECE3,color:#163D2B,stroke:#54856A
-```
+These are potential actions suggested by exploratory analysis, not proven causes or guaranteed outcomes. A specific recommendation for the country with the highest cost will be made after that country is confirmed from the dashboard and its revenue, profit, ratio and product mix are compared.
 
-**What this project demonstrates:** Data preparation, KPI analysis, trend interpretation, dashboard reporting and commercial problem‑solving. The workbook is linked above in this repository, but its annual summaries and source definitions remain under review.
+### Data quality and reporting limitations
+
+Year-level reporting needs reconciliation before it can support reliable trend conclusions. Grouping the raw `Date` field gives recorded revenue of 8.96m (2011), 9.18m (2012), 15.24m (2013), 14.15m (2014), 20.02m (2015) and 17.71m (2016). However, the workbook's annual pivot summary reverses the 2011 and 2012 labels and does not exactly match the raw-date aggregation for 2013. One transaction is dated **1906-09-02** despite the stated 2011–2016 reporting period, and **5,354 values** in the `Year` column are stored as dates rather than year numbers.
+
+The source currency, formal definition of `Profit`, duplicate-record handling and annual date logic have not been independently verified. The profit-to-revenue ratios are calculated descriptive measures, not independently verified accounting margins. The annual figures should be treated as diagnostic comparisons until the reporting logic is reconciled.
+
+**Next steps:** reconcile date fields and annual summaries; confirm financial measure definitions; validate the dashboard calculations; and drill into country-by-category performance to test which product and cost-management strategies are supported by the data.
+
+See the [workbook data-quality audit](./workbook_data_quality_audit.md) for the detailed review.
+
+**What this project demonstrates:** Excel-based KPI analysis, financial performance comparison, heatmap interpretation, product-mix analysis, data-quality investigation and commercially focused problem framing.
 
 ---
 
