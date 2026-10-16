@@ -167,6 +167,7 @@ Affordability remains a question to validate for a premium coffee proposition. A
 ---
 
 ## 2. Online Store Dashboard — First Excel Analytics Project
+<img width="1602" height="706" alt="image" src="https://github.com/user-attachments/assets/a03b94d8-8bfa-41d6-8f65-9aa70e2b0602" />
 
 **Status:** Foundational project · Excel 2016
 
@@ -210,6 +211,8 @@ Building this dashboard helped me practise Excel formulas, PivotTables, PivotCha
 ---
 
 ## 3. Sales Analytics — Financial Performance & Market Strategy
+<img width="1453" height="609" alt="image" src="https://github.com/user-attachments/assets/96dc448e-d243-4b73-bfec-1e096b641c57" />
+<img width="1455" height="639" alt="image" src="https://github.com/user-attachments/assets/3f8ae573-00ef-4126-86bd-312fa6e30f22" />
 
 **Status:** In progress
 
