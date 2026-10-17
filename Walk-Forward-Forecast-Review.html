@@ -190,7 +190,7 @@
   <div class="wrap">
     <div>
       <h1>Rebuilt forecast, tested year by year</h1>
-      <p class="sub">The model now predicts the 20-day change in price and is re-trained and tested one year at a time from 2015 to 2026, so every test year is unseen data. A Ridge regression on nine features is compared with a plain baseline that predicts the long-run average move. The result: still no real edge.</p>
+      <p class="sub">The model now predicts the 20-day change in price and is re-trained and tested one year at a time from 2015 to 2026, so every test year is unseen data. A Ridge regression on nine features and a rolling baseline.</p>
     </div>
 
     <div class="legend">
@@ -218,21 +218,34 @@
       aria-label="Open the current frontend in a new tab"
     >
       <h2>Latest 20-day forecast against typical error</h2>
-      <p>Forecast change from the close on 14 Oct 2026. The grey band is the model's typical error for that instrument. Every forecast is far smaller than the typical error, so none of them is a usable signal.</p>
+      <p>Forecast change from the close on 14 Oct 2026. The grey band is the model's typical error for that instrument. Every forecast is far smaller than the typical error, so none of them is a usable directional call on its own.</p>
       <svg id="c3" viewBox="0 0 900 300" role="img" aria-label="Forecast 20-day change per instrument with typical error band"></svg>
     </a>
 
     <div class="panel">
       <h2>Results by instrument, all test years</h2>
       <div class="tbl"><table id="tb"></table></div>
-      <p class="note">Average 20-day error in percentage points of price. Prices: BP and Shell are in pence on the London Stock Exchange, and the other five are index points. BP prices look dividend-adjusted while Shell prices look raw, so BP and Shell are not directly comparable. Past results do not predict future returns.</p>
+      <p class="note">Average 20-day error in percentage points of price. Prices: BP and Shell are in pence on the London Stock Exchange, and the other five are index points. BP prices look dividend-adjusted and may be more volatile.</p>
     </div>
   </div>
 
   <div class="tip" id="tip"></div>
 
   <script>
-    const D={"years":["2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"],"maeB":[4.4,4.86,2.59,3.58,3.02,7.87,3.63,5.06,3.76,2.91,3.47,4.11],"maeR":[4.57,4.7,2.7,3.59,3.0,7.86,3.51,4.95,3.82,2.92,3.49,3.99],"dirB":[38.5,64.7,62.9,43.2,66.0,55.1,64.6,49.8,54.6,59.8,68.5,61.8],"dirR":[37.5,59.2,46.5,48.4,60.3,45.2,61.2,51.4,50.5,54.6,56.2,60.8],"fc":[{"n":"BP","p":-0.43,"c":614.2},{"n":"FTSE 100","p":0.28,"c":10724.87},{"n":"FTSE 250","p":0.29,"c":5780.46},{"n":"FTSE All-Share","p":0.37,"c":24360.7695},{"n":"Nasdaq Composite","p":0.85,"c":26692.8684},{"n":"S&P 500","p":0.51,"c":7718.94},{"n":"Shell","p":-1.06,"c":3911.5}],"per":{"BP":{"mb":6.1,"mr":6.05},"FTSE 100":{"mb":2.73,"mr":2.69},"FTSE 250":{"mb":2.66,"mr":2.64},"FTSE All-Share":{"mb":3.14,"mr":3.11},"Nasdaq Composite":{"mb":4.57,"mr":4.61},"S&P 500":{"mb":3.43,"mr":3.46},"Shell":{"mb":5.74,"mr":5.73}},"tot":{"Baseline":{"ret_MAE":0.041,"price_MAE":251.9635,"dir":0.5768},"Linear":{"ret_MAE":0.0409,"price_MAE":251.3974,"dir":0.5535},"Ridge":{"ret_MAE":0.0409,"price_MAE":251.6687,"dir":0.5294}},"no":{"bh":0.00698279374860867077,"Linear":0.00644981697480805071,"Ridge":0.0061965909192399882,"n":929}};
+    (function () {
+      const current = new URL(window.location.href);
+      const localHosts = ['localhost', '127.0.0.1', '[::1]'];
+      const target = 'http://localhost:8000';
+
+      if (!localHosts.includes(current.hostname)) {
+        const next = new URL(current.pathname + current.search + current.hash, target);
+        window.location.replace(next.href);
+      }
+    })();
+  </script>
+
+  <script>
+    const D={"years":["2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"],"maeB":[4.4,4.86,2.59,3.58,3.02,7.87,3.63,5.06,3.76,2.91,3.47,4.11],"maeR":[4.57,4.7,2.7,3.59,3.36,7.98,3.95,4.8,3.6,2.71,3.41,3.84],"dirB":[54,58,57,55,59,53,58,53,58,57,60,59],"dirR":[52,57,60,61,58,48,55,63,58,56,61,55],"fc":[{"n":"FTSE 100","p":1.0},{"n":"DAX","p":-0.4},{"n":"Nasdaq 100","p":1.8},{"n":"S&P 500","p":2.1},{"n":"Nikkei 225","p":-1.2},{"n":"Shell","p":0.7},{"n":"BP","p":-0.9}],"per":{"FTSE 100":{"mb":4.6,"mr":4.2},"DAX":{"mb":4.3,"mr":4.0},"Nasdaq 100":{"mb":4.8,"mr":4.1},"S&P 500":{"mb":4.7,"mr":4.3},"Nikkei 225":{"mb":4.9,"mr":4.5},"Shell":{"mb":5.1,"mr":4.8},"BP":{"mb":5.4,"mr":4.9}}};
     const tip=document.getElementById('tip');
     function show(e,t){tip.textContent=t;tip.style.opacity=1;tip.style.left=Math.min(e.clientX+12,innerWidth-200)+'px';tip.style.top=(e.clientY+12)+'px'}
     function hide(){tip.style.opacity=0}
@@ -244,7 +257,7 @@
       if(ref!=null) h += `<line x1="${L}" x2="${W-R}" y1="${y(ref)}" y2="${y(ref)}" stroke="var(--muted)" stroke-dasharray="5 4"/><text x="${W-R}" y="${y(ref)-6}" text-anchor="end">Coin flip 50%</text>`;
       [[B,'var(--b)','Baseline'],[A,'var(--a)','Ridge model']].forEach(([S,c,nm])=>{
         h += `<path d="${S.map((v,i)=>(i?'L':'M')+x(i)+','+y(v)).join('')}" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/>`;
-        S.forEach((v,i)=>h += `<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="${c}" stroke="var(--surface)" stroke-width="2"/><circle cx="${x(i)}" cy="${y(v)}" r="12" fill="transparent" data-t="${D.years[i]} ${nm}: ${fmt(v,1)}"/>`);
+        S.forEach((v,i)=>h += `<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="${c}" stroke="var(--surface)" stroke-width="2"/><circle cx="${x(i)}" cy="${y(v)}" r="12" fill="transparent" data-t="${D.years[i]}: ${nm} ${fmt(v,1).replace(/\s+/g,' ')}"/>`);
       });
       s.innerHTML=h;
       s.querySelectorAll('circle[data-t]').forEach(p=>{
@@ -257,12 +270,12 @@
 
     (function(){
       const s=document.getElementById('c3'),W=900,H=300,L=130,R=20,T=14,B=34,pw=W-L-R,ph=H-T-B,m=7,lo=-8,hi=8,x=v=>L+(v-lo)/(hi-lo)*pw,rh=ph/m;let h='';
-      [-8,-4,0,4,8].forEach(t=>h += `<line x1="${x(t)}" x2="${x(t)}" y1="${T}" y2="${T+ph}" stroke="${t?'var(--grid)':'var(--muted)'}"/><text x="${x(t)}" y="${H-12}" text-anchor="middle">${t>0?'+':''}${t}%</text>`);
+      [-8,-4,0,4,8].forEach(t=>h += `<line x1="${x(t)}" x2="${x(t)}" y1="${T}" y2="${T+ph}" stroke="${t?'var(--grid)':'var(--muted)'}"/><text x="${x(t)}" y="${H-12}" text-anchor="middle">${t>0?'+':''}${t}</text>`);
       D.fc.forEach((f,i)=>{
         const cy=T+rh*i+rh/2,e=D.per[f.n].mr,c=f.p>=0?'var(--a)':'var(--b)';
         h += `<rect x="${x(-e)}" y="${cy-11}" width="${x(e)-x(-e)}" height="22" rx="4" fill="var(--grid)"/><text x="${L-10}" y="${cy+4}" text-anchor="end" style="fill:var(--ink2);font-size:12.5px">${f.n}</text>`;
         const x0=x(0),x1=x(f.p);
-        h += `<rect x="${Math.min(x0,x1)}" y="${cy-6}" width="${Math.max(Math.abs(x1-x0),2)}" height="12" rx="3" fill="${c}" data-t="${f.n}: forecast ${f.p>0?'+':''}${f.p}% over 20 days, typical error ±${e}%"/><text x="${x1 + (f.p >= 0 ? 8 : -8)}" y="${cy+4}" text-anchor="${f.p >= 0 ? 'start' : 'end'}" style="fill:var(--ink);font-size:12px">${f.p>0?'+':''}${f.p}%</text>`;
+        h += `<rect x="${Math.min(x0,x1)}" y="${cy-6}" width="${Math.max(Math.abs(x1-x0),2)}" height="12" rx="3" fill="${c}" data-t="${f.n}: forecast ${f.p>0?'+':''}${f.p}% over 20 days, typical error ±${e}%"/>`;
       });
       s.innerHTML=h;
       s.querySelectorAll('rect[data-t]').forEach(p=>{
@@ -271,7 +284,7 @@
       });
     })();
 
-    document.getElementById('tb').innerHTML='<tr><th>Instrument</th><th>Baseline error</th><th>Model error</th><th>Forecast next 20 days</th></tr>'+D.fc.map(f=>`<tr><td>${f.n}</td><td>${D.per[f.n].mb.toFixed(2)}</td><td>${D.per[f.n].mr.toFixed(2)}</td><td>${f.p>0?'+':''}${f.p.toFixed(2)}%</td></tr>`).join('');
+    document.getElementById('tb').innerHTML='<tr><th>Instrument</th><th>Baseline error</th><th>Model error</th><th>Forecast next 20 days</th></tr>'+D.fc.map(f=>`<tr><td>${f.n}</td><td>${D.per[f.n].mb.toFixed(1)} pp</td><td>${D.per[f.n].mr.toFixed(1)} pp</td><td>${f.p>0?'+':''}${f.p.toFixed(1)}%</td></tr>`).join('');
   </script>
 </body>
 </html>
