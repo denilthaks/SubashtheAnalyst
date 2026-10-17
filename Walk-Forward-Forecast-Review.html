@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>Walk-Forward Forecast Review</title>
+  <meta name="description" content="Interactive walk-forward review of a 20-day financial forecast, including yearly error, directional accuracy and forecast uncertainty.">
   <meta name="claude:viewport-fit-sides" content="cover">
   <style>
     :root {
@@ -210,17 +211,11 @@
       <svg id="c2" viewBox="0 0 900 280" role="img" aria-label="Line chart of yearly direction accuracy for the model and baseline"></svg>
     </div>
 
-    <a
-      class="panel"
-      href="#"
-      onclick="(function(e){ e.preventDefault(); window.open(location.href, '_blank', 'noopener,noreferrer'); })(event);"
-      role="link"
-      aria-label="Open the current frontend in a new tab"
-    >
+    <div class="panel">
       <h2>Latest 20-day forecast against typical error</h2>
       <p>Forecast change from the close on 14 Oct 2026. The grey band is the model's typical error for that instrument. Every forecast is far smaller than the typical error, so none of them is a usable directional call on its own.</p>
       <svg id="c3" viewBox="0 0 900 300" role="img" aria-label="Forecast 20-day change per instrument with typical error band"></svg>
-    </a>
+    </div>
 
     <div class="panel">
       <h2>Results by instrument, all test years</h2>
@@ -230,19 +225,6 @@
   </div>
 
   <div class="tip" id="tip"></div>
-
-  <script>
-    (function () {
-      const current = new URL(window.location.href);
-      const localHosts = ['localhost', '127.0.0.1', '[::1]'];
-      const target = 'http://localhost:8000';
-
-      if (!localHosts.includes(current.hostname)) {
-        const next = new URL(current.pathname + current.search + current.hash, target);
-        window.location.replace(next.href);
-      }
-    })();
-  </script>
 
   <script>
     const D={"years":["2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"],"maeB":[4.4,4.86,2.59,3.58,3.02,7.87,3.63,5.06,3.76,2.91,3.47,4.11],"maeR":[4.57,4.7,2.7,3.59,3.36,7.98,3.95,4.8,3.6,2.71,3.41,3.84],"dirB":[54,58,57,55,59,53,58,53,58,57,60,59],"dirR":[52,57,60,61,58,48,55,63,58,56,61,55],"fc":[{"n":"FTSE 100","p":1.0},{"n":"DAX","p":-0.4},{"n":"Nasdaq 100","p":1.8},{"n":"S&P 500","p":2.1},{"n":"Nikkei 225","p":-1.2},{"n":"Shell","p":0.7},{"n":"BP","p":-0.9}],"per":{"FTSE 100":{"mb":4.6,"mr":4.2},"DAX":{"mb":4.3,"mr":4.0},"Nasdaq 100":{"mb":4.8,"mr":4.1},"S&P 500":{"mb":4.7,"mr":4.3},"Nikkei 225":{"mb":4.9,"mr":4.5},"Shell":{"mb":5.1,"mr":4.8},"BP":{"mb":5.4,"mr":4.9}}};
