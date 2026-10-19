@@ -1,0 +1,23 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Build
+*.log
+
+# Keep assets tracked
+!charts/
+!*.svg
+!*.png
+!*.jpeg
+!*.jpg
