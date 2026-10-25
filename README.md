@@ -119,6 +119,8 @@ gantt
 
 **[▶ Play CurioTrail directly](https://denilthaks.github.io/CURIO/#/)** · [View the source code](https://github.com/denilthaks/CURIO)
 
+*Best viewed on a modern browser; this prototype is still being iterated. A verified project screenshot will be added when one is available.*
+
 CurioTrail is an AI-assisted, self-directed learning project that turns technical concepts into interactive challenges. It is designed to help non-technical learners practise SQL, Python, Excel formulas and KPI analysis through a game-style experience rather than only reading explanations.
 
 I use the project to learn by building: defining the problem, breaking concepts into logic, experimenting with implementation, testing behaviour and improving the experience. AI tools support parts of development, but I do not treat generated output as automatically correct. I aim to understand the key logic, verify what I can and document limitations honestly.
@@ -131,8 +133,7 @@ I use the project to learn by building: defining the problem, breaking concepts 
 
 ## 1. Starbucks Nepal — Market-entry and affordability analysis
 
-**Tools:** Excel · Strategic analysis · Macroeconomic researchStarbucks_img
-![My Mobile Screenshot](IMG_8065.jpeg)
+**Tools:** Excel · Strategic analysis · Macroeconomic research
 
 ### Business question
 
