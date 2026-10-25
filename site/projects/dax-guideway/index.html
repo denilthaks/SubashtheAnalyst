@@ -6,6 +6,8 @@
 /* Site shell for this standalone page: same look as the V2 nav, scoped under .sg-sitebar so it cannot affect the guide's own styles. */
 .sg-sitebar{position:relative;z-index:60;height:70px;padding:0 max(20px,calc((100vw - 1320px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(7,13,16,.96);border-bottom:1px solid rgba(178,211,202,.19);font-family:'Manrope',system-ui,sans-serif;box-sizing:border-box}
 .sg-sitebar *{box-sizing:border-box}
+/* The decorative hero orb extends past the viewport on phones; clip (not hidden) keeps the guide's sticky nav working. */
+html,body{overflow-x:clip}
 .sg-sitebar a{color:#b6c1bf;text-decoration:none}
 .sg-sitebar .sg-brand{display:flex;align-items:center;gap:10px;white-space:nowrap}
 .sg-sitebar .sg-mark{width:36px;height:36px;display:grid;place-items:center;border:1px solid #e9bd59;border-radius:9px;color:#e9bd59;font:500 13px 'DM Mono',monospace}
