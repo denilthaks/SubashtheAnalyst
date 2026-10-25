@@ -300,7 +300,7 @@ The source currency, formal definition of `Profit`, duplicate-record handling an
 
 **Next steps:** reconcile date fields and annual summaries; confirm financial measure definitions; validate the dashboard calculations; and drill into country-by-category performance to test which product and cost-management strategies are supported by the data.
 
-See the [workbook data-quality audit](./workbook_data_quality_audit.md) for the detailed review.
+See the [workbook data-quality audit](./workbook_data_quality_audit.md) for the detailed review and the [conservative remediation workflow](./sales_data_quality_review.md) for a documented, non-destructive approach to investigating the date anomalies.
 
 **What this project demonstrates:** Excel-based KPI analysis, financial performance comparison, heatmap interpretation, product-mix analysis, data-quality investigation and commercially focused problem framing.
 
