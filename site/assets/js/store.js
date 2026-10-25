@@ -116,7 +116,7 @@ var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(rende
 
 /* limits */
 [['Practice data','Statuses, products, channels and payment methods are spread almost evenly. That is typical of generated practice data, so patterns here teach technique and do not describe a real shop.'],
- ['No currency','The workbook never states a currency, so values are shown as plain numbers. An earlier note used a pound sign without support.'],
+ ['Currency is formatting only','The workbook formats every amount as £, but it has no currency field and is a practice dataset, so values are shown as plain numbers here.'],
  ['Gross is not revenue','Order value includes cancelled, returned and pending orders. Delivered value is the safer proxy for money received.'],
  ['No costs or margin','There is no cost, discount value or margin data, so nothing here says whether the store was profitable.'],
  ['2025 is half a year','Data ends 30 June 2025. Year comparisons need like-for-like periods.'],
