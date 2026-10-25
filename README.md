@@ -115,6 +115,20 @@ gantt
 
 ## Featured projects
 
+## CurioTrail — A story-driven learning game
+
+**[▶ Play CurioTrail directly](https://denilthaks.github.io/CURIO/#/)** · [View the source code](https://github.com/denilthaks/CURIO)
+
+CurioTrail is an AI-assisted, self-directed learning project that turns technical concepts into interactive challenges. It is designed to help non-technical learners practise SQL, Python, Excel formulas and KPI analysis through a game-style experience rather than only reading explanations.
+
+I use the project to learn by building: defining the problem, breaking concepts into logic, experimenting with implementation, testing behaviour and improving the experience. AI tools support parts of development, but I do not treat generated output as automatically correct. I aim to understand the key logic, verify what I can and document limitations honestly.
+
+**What this project demonstrates:** product thinking, learning-by-building, structured problem-solving, iterative testing and transparent AI-assisted development.
+
+> **Try it:** Open the live game above. The prototype is a work in progress; rendering performance can vary by device and graphics hardware.
+
+---
+
 ## 1. Starbucks Nepal — Market-entry and affordability analysis
 
 **Tools:** Excel · Strategic analysis · Macroeconomic researchStarbucks_img
