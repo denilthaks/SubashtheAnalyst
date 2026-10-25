@@ -47,6 +47,24 @@ My projects explore commercial performance, market-entry strategy, operational i
 
 **Career interests:** Data Analysis · Business Analysis · Business Intelligence · Operations Analysis · Research Analysis
 
+
+## Learning by building: my approach to AI-assisted development
+
+I am largely self-taught, and AI-assisted development has become one of the ways I learn. I sometimes call it *vibe coding*, but I do not see the process as simply asking an AI tool to generate code and accepting whatever comes back. I start with a problem, explain the context, work through the logic, build a practical solution, and then test where it works and where it falls short.
+
+For example, I am building [CurioTrail](https://denilthaks.github.io/CURIO/#/), a story-driven learning game that turns concepts such as SQL, Python, Excel and KPI analysis into interactive challenges. I learn by experimenting with ideas and building things I can use to practise them. AI tools can accelerate implementation, but I remain responsible for checking the behaviour, understanding the decisions I can explain, and being clear about limitations.
+
+That approach connects with how I think about analysis: begin with a real problem, gather context, reason through possible solutions, test assumptions and improve the result. Analysts cannot prevent every business problem, but they can help identify risks earlier, investigate root causes and support better-informed decisions before issues become more costly.
+
+**What I am practising:**
+- **Problem framing:** define what needs to be solved and why it matters.
+- **Logical decomposition:** break an idea into inputs, rules, outputs and edge cases.
+- **Testing and iteration:** challenge assumptions, investigate failures and improve the solution.
+- **Responsible AI use:** use AI to accelerate work without treating its output as automatically correct.
+- **Learning through application:** turn abstract concepts into tools and exercises I can experiment with.
+
+I do not claim to have written every line of every AI-assisted project from scratch. My aim is to be transparent about the tools I use, understand the system's key logic and limitations, and demonstrate my contribution through the problem definition, decisions, testing and improvements.
+
 ## Analytical approach
 
 My workflow connects business questions to evidence and measurable decisions.
